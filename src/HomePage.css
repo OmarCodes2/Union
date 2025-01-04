@@ -1,42 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Clear+Sans');
+
+@font-face {
+  font-family: 'KarnakPro';
+  src: url('../public/fonts/KarnakPro-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KarnakProBook';
+  src: url('../public/fonts/KarnakPro-Book.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  --background-color: #dfdfdf;
+  --text-color: #000;
+  --btn-border: #000;
+  --btn-bg: #fff;
+  --btn-bg-play: #000;
+  --btn-text-color-play: #fff;
+  --header-margin-top: 180px;
+  --logo-size: 100px;
+}
+
+body, html, .home-container {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .home-container {
-    text-align: center;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--header-margin-top);
+}
+
+.wordle-logo {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  object-fit: contain;
+  margin: -17px;
+}
+
+.wordle-title {
+  font-family: 'KarnakPro', sans-serif;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.tagline-container{
+    margin-top: 0.3rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f9f9f9;
-    font-family: 'Merriweather', sans-serif;
+}
+.tagline {
+  font-family: 'KarnakProBook', sans-serif;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid var(--btn-border);
+  background-color: var(--btn-bg);
+  color: var(--text-color);
+  border-radius: 20px;
+}
+
+.play-btn {
+  background-color: var(--btn-bg-play);
+  color: var(--btn-text-color-play);
+  width: 9rem;
+}
+
+.puzzle-info p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 415px) {
+  .button-group {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 2rem auto;
   }
-  
-  .header .logo {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .subtitle {
-    font-size: 18px;
-    color: #555;
-  }
-  
-  .play-button {
-    font-size: 20px;
-    background-color: black;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  .play-button:hover {
-    background-color: #333;
-  }
-  
-  .footer {
-    margin-top: auto;
-    font-size: 16px;
-    color: #777;
-  }
-  
+}
