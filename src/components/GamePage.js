@@ -4,6 +4,9 @@ import "../GamePage.css";
 function GamePage() {
   // puzzle data from backend
   const [puzzle, setPuzzle] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => setModalOpen(!modalOpen);
 
   // dashes/slots for left and right words
   const [leftSlots, setLeftSlots] = useState([]);
@@ -136,7 +139,7 @@ function GamePage() {
       }
     }
 
-    // Clear typed words (or keep them, up to you)
+    // Clear typed words
     setLeftSlots(Array(puzzle.firstWord.length).fill(""));
     setRightSlots(Array(puzzle.secondWord.length).fill(""));
     setCurrentIndexLeft(0);
@@ -149,6 +152,27 @@ function GamePage() {
   // ----------------------------------------------------------------
   return (
     <div className="game-page">
+      {/* Header */}
+      <header className="game-header">
+        <div className="header-left">UNION</div>
+        <div className="header-right" onClick={toggleModal}>
+          ?
+        </div>
+      </header>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div className="modal-overlay" onClick={toggleModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={toggleModal}>
+              ×
+            </button>
+            <h2>Help</h2>
+            <p>Welcome to the game! Here's how you play...</p>
+          </div>
+        </div>
+      )}
+
       {/* Dashes Row */}
       <div className="dashes-row">
         <div
@@ -157,21 +181,29 @@ function GamePage() {
           }`}
           onClick={() => setSelectedSide("left")}
         >
-          {leftSlots.map((letter, i) => {
-            const isCurrent = selectedSide === "left" && i === currentIndexLeft;
-            return (
-              <div
-                key={i}
-                className={
-                  "letter-slot" +
-                  (letter ? " filled" : "") +
-                  (isCurrent ? " selected" : "")
-                }
-              >
-                {letter ? letter : ""}
-              </div>
-            );
-          })}
+          <div className="letters-row">
+            {leftSlots.map((letter, i) => {
+              const isCurrent = selectedSide === "left" && i === currentIndexLeft;
+              return (
+                <div
+                  key={i}
+                  className={
+                    "letter-slot" +
+                    (letter ? " filled" : "") +
+                    (isCurrent ? " selected" : "")
+                  }
+                >
+                  {letter}
+                </div>
+              );
+            })}
+          </div>
+          <div className="word-label">Word 1</div>
+        </div>
+
+        <div className="common-terms">
+          <div>Common</div>
+          <div>Terms</div>
         </div>
 
         <div
@@ -180,28 +212,30 @@ function GamePage() {
           }`}
           onClick={() => setSelectedSide("right")}
         >
-          {rightSlots.map((letter, i) => {
-            const isCurrent =
-              selectedSide === "right" && i === currentIndexRight;
-            return (
-              <div
-                key={i}
-                className={
-                  "letter-slot" +
-                  (letter ? " filled" : "") +
-                  (isCurrent ? " selected" : "")
-                }
-              >
-                {letter ? letter : ""}
-              </div>
-            );
-          })}
+          <div className="letters-row">
+            {rightSlots.map((letter, i) => {
+              const isCurrent =
+                selectedSide === "right" && i === currentIndexRight;
+              return (
+                <div
+                  key={i}
+                  className={
+                    "letter-slot" +
+                    (letter ? " filled" : "") +
+                    (isCurrent ? " selected" : "")
+                  }
+                >
+                  {letter}
+                </div>
+              );
+            })}
+          </div>
+          <div className="word-label">Word 2</div>
         </div>
       </div>
 
       {/* 3×3 GRID */}
       <div className="grid-container">
-        {/* We only render grid items if puzzle is loaded */}
         {puzzle && (
           <>
             <div className="grid-item">{puzzle.firstColumn[0]}</div>
@@ -232,7 +266,6 @@ function GamePage() {
       <div className="mistakes-remaining">
         Mistakes Remaining:
         <span className="dots">
-          {/* Display as many dots as mistakes left */}
           {[...Array(mistakes)].map((_, idx) => (
             <span className="dot" key={idx} />
           ))}
