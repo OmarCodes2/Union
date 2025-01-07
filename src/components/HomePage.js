@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../HomePage.css";
 
 function HomePage() {
+  const navigate = useNavigate();
+
+  const handlePlayButtonClick = () => {
+    navigate("/game");
+  };
   return (
     <div className="home-container">
       {/* Logo and title */}
@@ -19,7 +25,7 @@ function HomePage() {
 
       {/* Button row for wider screens, or stacked on narrow screens */}
       <div className="button-group">
-        <button className="btn play-btn">Play</button>
+        <button className="btn play-btn"onClick={handlePlayButtonClick} >Play</button>
       </div>
 
       {/* Date, puzzle info, and editor */}
