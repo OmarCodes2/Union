@@ -221,7 +221,7 @@ function GamePage() {
 
       {/* Submit Button */}
       <button
-        className={`play-btn ${isSubmitEnabled ? "" : "disabled"}`}
+        className={`submit-btn ${isSubmitEnabled ? "" : "disabled"}`}
         onClick={handleSubmit}
         disabled={!isSubmitEnabled}
       >

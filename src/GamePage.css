@@ -6,7 +6,7 @@
     color: #333;
   }
 
-  .grid-container {
+.grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
@@ -39,24 +39,24 @@
     opacity: 0.9;
 }
 
-.mistakes-remaining {
-text-align: center;
-margin-top: 2rem;
-font-size: 1rem;
-}
+  .mistakes-remaining {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
 
-.dots {
-margin-left: 0.5rem;
-}
-
-.dot {
-display: inline-block;
-width: 10px;
-height: 10px;
-margin: 0 0.2rem;
-background-color: #555;
-border-radius: 50%;
-}
+  .dots {
+    margin-left: 0.5rem;
+  }
+  
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 0.2rem;
+    background-color: #555;
+    border-radius: 50%;
+  }
 
 .dashes-row {
     display: flex;
@@ -157,7 +157,7 @@ border-radius: 50%;
     border-bottom-color: #da614e;
   }
 
-.play-btn {
+.submit-btn {
     background-color: #333;
     color: #fff;
     width: 9rem;
@@ -172,11 +172,11 @@ border-radius: 50%;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  .play-btn:hover {
+  .submit-btn:hover {
     background-color: #555;
   }
   
-  .play-btn.disabled {
+  .submit-btn.disabled {
     background-color: #ddd;
     color: #aaa;
     cursor: not-allowed;
